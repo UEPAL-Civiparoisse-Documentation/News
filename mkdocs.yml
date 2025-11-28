@@ -1,0 +1,115 @@
+site_name: News Civiparoisse
+site_description : Site de News pour CiviParoisse
+site_url: https://uepal-civiparoisse-documentation.github.io/News/index.html
+theme:
+   name: material
+   logo: assets/uepal-logo.svg
+   locale: fr
+   language: fr
+   features:
+     - search.suggest
+     - search.highlight
+     - search.share
+     - navigation.sections
+     - navigation.indexes
+     - navigation.tabs
+     - navigation.top
+     - navigation.footer
+     - toc.follow
+     - toc.integrate
+   palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+plugins:
+   - search:
+       lang: fr
+   - blog:
+      blog_dir : .
+      post_dir : "{blog}/posts"
+#      post_excerpt: required
+      post_url_date_format: dd/MM/yyyy
+      post_url_format: "{date}/{file}/{slug}"
+      post_readtime: false
+      archive: false
+      categories_allowed:
+        - Nouvelles
+        - Astuces
+      categories_toc: true
+      authors: false
+      pagination: false
+   - rss:
+       enabled: true
+       feed_title: "Astuces title"
+       feed_description: "Astuces descr"
+       json_feed_enabled: false
+       rss_feed_enabled: true
+       categories:
+         - categories
+       date_from_meta:
+         as_creation: date.created
+         as_update: date.updated
+         default_timezone: Europe/Paris
+         datetime_format: yyyy/MM/dd
+       feed_ttl: 60
+       pretty_print: true
+       use_git: false
+       use_material_blog: false
+       match_path: "^posts/astuces/.*"
+       feeds_filenames:
+        rss_created: astuces-rss.xml
+        rss_updated: astuces-rss-updated.xml
+   - rss:
+       enabled: true
+       feed_title: "Nouvelles title"
+       feed_description: "Nouvelles descr"
+       json_feed_enabled: false
+       rss_feed_enabled: true
+       categories:
+         - categories
+       date_from_meta:
+         as_creation: date.created
+         as_update: date.updated
+         default_timezone: Europe/Paris
+         datetime_format: yyyy/MM/dd
+       feed_ttl: 60
+       pretty_print: true
+       use_git: false
+       use_material_blog: false
+       match_path: "^posts/nouvelles/.*"
+       feeds_filenames:
+        rss_created: nouvelles-rss.xml
+        rss_updated: nouvelles-rss-updated.xml
+use_directory_urls: false
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.details
+  - admonition
+  - pymdownx.superfences
+  - toc:
+     anchorlink: true
+     title: 'Table des matières'
+extra_css:
+  - stylesheets/extra.css
